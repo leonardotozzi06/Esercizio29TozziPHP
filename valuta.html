@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Cambio Valuta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .flag {
+            width: 30px;
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        select,
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calcolatore Cambio Valuta</h1>
+    <div class="form-container">
+        <form action="cambio.php" method="GET">
+            <label for="importo">Importo in Euro (€):</label>
+            <input type="text" id="importo" name="importo" required>
+
+            <label for="valuta">Seleziona la valuta:</label>
+            <select id="valuta" name="valuta" onchange="cambiaBandiera()">
+                <option value="dollaro">Dollaro (USD)</option>
+                <option value="yen">Yen (JPY)</option>
+                <option value="franchi">Franchi Svizzeri (CHF)</option>
+                <option value="sterline">Sterline (GBP)</option>
+            </select>
+
+            <div id="bandiera">
+                <img id="flag" src="https://www.worldometers.info/img/flags/it-flag.gif" alt="Bandiera Italia"
+                    class="flag">
+            </div>
+
+            <button type="submit">Calcola</button>
+        </form>
+    </div>
+
+    <script>
+        function cambiaBandiera() {
+            var valuta = document.getElementById("valuta").value;
+            var bandiera = document.getElementById("flag");
+            switch (valuta) {
+                case 'dollaro':
+                    bandiera.src = 'https://www.worldometers.info/img/flags/us-flag.gif';
+                    break;
+                case 'yen':
+                    bandiera.src = 'https://www.worldometers.info/img/flags/jp-flag.gif';
+                    break;
+                case 'franchi':
+                    bandiera.src = 'https://www.worldometers.info/img/flags/ch-flag.gif';
+                    break;
+                case 'sterline':
+                    bandiera.src = 'https://www.worldometers.info/img/flags/gb-flag.gif';
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
